@@ -1,0 +1,300 @@
+Contents:
+
+1.Get methods : classname  idname tagname 
+
+2.Query selectors & querySelectorAll
+
+3.working with events - onclick Method 
+
+4.Why do we use DOM?
+
+*************************************************************************************************************************
+
+1.GET METHODS
+
+===>DOM ல் ஒரு element ஐ get செய்ய மூன்று வழிகள் உள்ளன.
+    அந்த வழிகள்:   (1)class name      (2)id name       (3)tag name 
+    return types :         Array       Exact element          Array
+
+===>class name ஐ வைத்து get செய்தால் Array ஆக return ஆகும்.
+    tag name ஐ வைத்து get செய்தால் Array ஆக return ஆகும்.
+    id name ஐ வைத்து get செய்தால் மட்டுமே exact ஆக அந்த element ஐ get(return) செய்ய முடியும்.
+
+===>Example:
+ 
+    <div class="main" id="container">This is Get Methods by Prabhakaran</div>
+
+
+              ***************************************************************** 
+
+(1)getElementsByClassName
+
+===>This method is applicable only if you have class attribute in HTML element.
+    class attribute இருந்தால் மட்டுமே இதனை பயன்படுத்த முடியும் அதாவது work ஆகும்.
+
+===>It return array.
+    ClassName ஐ வைத்து get செய்தால் output ஆனது Array ஆக return ஆகி வந்துள்ளது.
+
+===>Example 1:
+
+    <body>
+        <div class="main1">Hai</div>
+        <div class="main2">Everybody</div>
+        <div class="main3">GoodMorning</div>             ===>HTML part
+    </body>
+
+    const a = document.getElementsByClassName("main1");   ===>js part
+    console.log(a);    
+
+    o/p 1:
+    HTMLCollection [div.main1]
+    
+
+===>Example 2:
+
+    <body>
+        <div class="main1">Hai</div>
+        <div class="main1">Everybody</div>
+        <div class="main1">GoodMorning</div>             ===>HTML part
+    </body>
+
+    const a = document.getElementsByClassName("main1");   ===>js part
+    console.log(a);   
+
+    o/p :
+    HTMLCollection(3) [div.main1, div.main1, div.main1]                         
+ 
+              ***************************************************************** 
+
+(2)getElementById
+
+===>This method is applicable only if you have id attribute in HTML element.
+    id attribute இருந்தால் மட்டுமே இதனை பயன்படுத்த முடியும் அதாவது work ஆகும்.
+
+===>It return html element.
+    நமக்கு html element ஐ return செய்யும்
+
+===>if no element on id name it returns null.
+    id name தவறாக கொடுத்து விட்டோம் அல்லது ஏதேனும் கொடுக்கவில்லை என்றால் Null என்று output or return ஆகும்.
+
+
+===>Example 1: html element ஐ return செய்யும்
+
+    <body>
+        <div class="main" id="container">ID Example</div>   ===>HTML part
+        <script src="script.js"></script>
+    </body>
+
+        const a = document.getElementById("container");     ===>js part
+        console.log(a);
+        
+        o/p: 
+        <div class="main" id="container">ID Example</div>   
+
+
+===>Example 2: id name it returns null.
+
+    <body>
+        <div class="main" id="container">ID Example</div>   ===>HTML part
+        <script src="script.js"></script>
+    </body>
+
+        const a = document.getElementById("container1");     ===>js part
+        console.log(a);
+        
+        o/p: 
+        null
+
+===>Example 3:
+
+    <body>
+        <div class="main" id="main">Hai</div>
+        <div class="main1" id="main1">Everybody</div>
+        <div class="main2" id="main2">GoodMorning</div>    ===>HTML part
+        <script src="script.js"></script>
+    </body>
+
+    Method1:
+            const a = document.getElementsById("main2");
+            a.style.color = "red"                          ===>js part
+
+    Method2:
+            document.getElementsById("main2").style.color = "red"                     
+
+
+===>Example 4:
+
+    <body>
+        <div class="main" id="main">Hai</div>
+        <div class="main1" id="main1">Everybody</div>
+        <div class="main2" id="main2">GoodMorning</div>    ===>HTML part
+        <script src="script.js"></script>
+    </body>
+
+    Id ஐ வைத்து get செய்தால் மட்டுமே exact ஆக அந்த element ஐ get செய்ய முடியும்.
+
+              ***************************************************************** 
+
+(3)getElementsByTagName
+
+===>This method is applicable only if you have Tag in HTML element.
+    Tag இருந்தால் மட்டுமே இதனை பயன்படுத்த முடியும் அதாவது work ஆகும்.
+
+===>It return array.
+    TagName ஐ வைத்து get செய்தால் output ஆனது Array ஆக return ஆகி வந்துள்ளது.
+
+===>Example1:
+
+    <body>
+        <div class="main1">Hai</div>
+        <div class="main2">Everybody</div>           ===>HTML part
+        <div class="main3">GoodMorning</div>
+        <p>This is a TagName Example</p>   
+    </body>
+
+    const a = document.getElementsByTagName("p")     ===>js part
+    console.log(a);    
+
+    o/p :
+    HTMLCollection [p]           
+ 
+
+===>Example2:
+
+    <body>
+        <div class="main1">Hai</div>
+        <div class="main2">Everybody</div>           ===>HTML part
+        <div class="main3">GoodMorning</div>
+        <p>This is a TagName Example</p>   
+    </body>
+
+    const a = document.getElementsByTagName("div")   ===>js part
+    console.log(a);    
+
+    o/p :
+    HTMLCollection(3) [div.main1, div.main2, div.main3]   
+
+*************************************************************************************************************************
+
+2.querySelector & querySelectorAll
+
+===>It will return only the first occurence of an html element.It is called querySelector.
+    முதல் occurence ஐ மட்டுமே எடுத்துக்கொண்டு வேலை செய்வது querySelector ஆகும்.
+    html element ஐ return செய்யும்.
+   
+===>It will return all the occurence of the tag in an array.It is called querySelectorAll.
+    அனைத்து occurence யும் எடுத்துக்கொண்டு வேலை செய்வது querySelectorAll ஆகும்.
+    அதாவது querySelectorAll கொடுத்து ஒரு Tag name ஐ call பண்ணினால் அது எத்தனை TagName கொடுத்துள்ளமோ அத்தனையும் எடுத்துக்கொண்டு display செய்யும்.
+    ஒரு Array ஆக return செய்யும்.
+
+===>querySelector & querySelectorAll gives Tagname only.
+    querySelector & querySelectorAll ஆகிய இரண்டும் Tagname ல் மட்டுமே வேலை செய்யும்.
+
+
+===>querySelector Example:
+
+    const a = document.querySelector("div")
+    console.log(a);
+
+    o/p :
+    <div class="main1">Hai</div>
+
+    querySelector கொடுக்கும்போது முதல் occurence div மட்டும் வரும்.
+    html element ஐ return ஆகி காட்டும்.
+
+
+===>querySelectorAll Example:
+
+    const a = document.querySelectorAll("div")
+    console.log(a);
+
+    o/p :
+    NodeList(3) [div.main1, div.main2, div.main3]
+
+    இதே querySelectorAll கொடுக்கும்போது அனைத்து div ம் வரும்.
+    இதுதான் இரண்டுக்கும் உள்ள வித்தியாசமாகும்.
+    querySelectorAll ஆனது console ல் ஒரு Nodelistல் display ஆகும்.
+    Nodelist என்பது நாம் எத்தனை TagName கொடுத்துள்ளமோ அதனை வரிசைப்படுத்தி காட்டும்.
+
+
+===>Refer to query-selector : https://query-selector.netlify.app/
+
+*************************************************************************************************************************
+
+3.working with events - onclick Method 
+
+===>Example:
+
+    function foo() {
+        const a = document.getElementById("email").value;
+        console.log(a);
+    }
+
+    o/p:
+    Email Box க்குள் நாம் என்ன content கொடுக்கிறோமோ அதனை console ல்  display ஆகும்.அதனை நாம் காணலாம்.
+    மேலும் Submit Button ஐ எத்தனை முறை click செய்கிறோமோ அத்தனை முறை count ஆகிக் கொண்டே இருக்கும்.
+    இதுதான் இதனுடைய result ஆகும்.
+    
+    value என்பது element க்குள் என்ன content கொடுக்கிறோமோ அதனை display செய்ய பயன்படுகிறது.
+ 
+
+===>Session Task : onclick Method
+    dhoni7@gmail.com => valid user || invalid user
+
+    function foo() {
+    const task = document.getElementById("email").value;
+        if (task == "dhoni7@gmail.com") {
+        console.log("valid user");
+    }
+    else {
+        console.log("invalid user");
+    }
+    }
+
+    o/p:
+    Email Box க்குள் dhoni7@gmail.com என்று கொடுக்கும் போது console ல் "valid user"  display ஆகும்.
+    வேறு எந்த தகவல் கொடுத்தாலும் "invalid user"  display ஆகும்.
+    மேலும் Submit Button ஐ எத்தனை முறை click செய்கிறோமோ அத்தனை முறை count ஆகிக் கொண்டே இருக்கும்.
+    இதுதான் இதனுடைய result ஆகும்.
+
+*************************************************************************************************************************
+
+4.Why do we use DOM?
+எதற்காக DOM பயன்படுத்துகிறோம்?
+
+    //<label for="email">Email</label> <br>
+    //<input type="email" id="email"></input> 
+
+
+    Normal Create for DOM
+
+    var label = document.createElement("label")
+    label.innerHTML="Email"
+    label.setAttribute("for","email")
+    var linebreak = document.createElement("br")
+    var input = document.createElement("input")
+    input.setAttribute("type","email");
+    input.setAttribute("id","email");
+    document.body.append(label,linebreak,input)
+
+
+    using function we can achieve dynamic
+    
+    function createLabel(tagname, content, attrname, attrvalue) {
+        var label = document.createElement(tagname)
+        label.innerHTML = content
+        label.setAttribute(attrname, attrvalue)
+        return label;
+        }
+        const label1 = createLabel("label", "Email", "for", "email")
+        document.body.append(label1);
+
+
+
+===>H.W 
+  1.firstname
+  2.lastname
+  3.phonenumber
+  4.email
+
+*************************************************************************************************************************
